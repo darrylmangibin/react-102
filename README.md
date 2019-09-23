@@ -97,3 +97,56 @@ class App extends React.Component {
 
 export default App;
 ```
+3. Create a components folder(this will hold all our different components)
+4. Add a Header folder under the components folder and create index.js under the Header folder.
+5. Add this code in the Header Component from its index.js
+```
+import React from 'react';
+
+const Header = () => {
+  return (
+    <header>
+      HEADER
+    </header>
+  )
+}
+
+export default Header;
+```
+6. Import the Header Component to the App.js
+```
+import React from 'react';
+
+import Header from './components/Header'
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        App
+      </div>
+    )
+  }
+}
+
+export default App;
+```
+7. Change the div element into React.Fragment(an empty element to hold multiply lements)
+8. Use the Header Component by using <Header /> in the index.js under the src directory
+```
+import React from 'react';
+
+import Header from './components/Header'
+
+class App extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Header />
+      </React.Fragment>
+    )
+  }
+}
+
+export default App;
+```
