@@ -150,3 +150,40 @@ class App extends React.Component {
 
 export default App;
 ```
+9. Add an Actions folder under the components folder and add index.js. This Component will be our filter input to to hide the completed Items(You will see later from this tutorial)
+10. Under the index.js from the Actions folder
+```
+import React from 'react';
+
+class Actions extends React.Component {
+  render() {
+    return (
+      <div>
+        Actions
+      </div>
+    )
+  }
+}
+
+export default Actions;
+```
+11. Import the Actions Component to our App.js
+```
+import React from 'react';
+
+import Header from './components/Header';
+import Actions from './components/Actions';
+
+class App extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Header />
+        <Actions />
+      </React.Fragment>
+    )
+  }
+}
+
+export default App;
+```
