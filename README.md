@@ -69,11 +69,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 1. Create index.js from the src directory
-
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './App.css;'
+import './App.css'
 
 import App from './App'
 
@@ -81,5 +80,20 @@ ReactDOM.render(
   <App />,
   document.querySelector('#root')
 )
+```
+2. Create App.js from the src directory
+```
+import React from 'react';
 
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        App
+      </div>
+    )
+  }
+}
+
+export default App;
 ```
