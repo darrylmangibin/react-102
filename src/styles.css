@@ -40,7 +40,7 @@ button {
 }
 
 a {
-    color: #6F439C;
+    color: #e23b8e;
 }
 
 /* Container */
@@ -54,7 +54,7 @@ a {
 /* Header */
 
 .header {
-  background: #6F439C;
+  background: #e23b8e;
   color:white;
   padding: 1.6rem 0;
 }
@@ -113,9 +113,9 @@ a {
 }
 
 .button {
-    background: #7044a0;
+    background: #e23b8e;
     border: none;
-    border-bottom: 2px solid #603a88;
+    border-bottom: 2px solid #992a61;
     color: white;
     font-size: 1.4rem;
     font-weight: 300;
@@ -124,7 +124,7 @@ a {
 }
 
 .button:hover {
-    background: #5F3A87;
+    background: #992a61;
 }
 
 .button--secondary {
