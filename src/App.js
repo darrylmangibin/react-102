@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Actions from './components/Actions';
 import Tasks from './components/Tasks';
 import AddForm from './components/AddForm';
+import { of } from 'rxjs';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class App extends React.Component {
     this.state = {
       tasks: [],
       filterText: '',
-      hideCompleted: false
+      hideCompleted: false,
+      error: undefined
     }
 
     this.onAddTask = this.onAddTask.bind(this);
@@ -42,9 +44,26 @@ class App extends React.Component {
   }
 
   onAddTask(data) {
+    if(data.title.length <= 0) {
+      return this.setState({
+        error: 'Please add a task'
+      })
+    }
+    const sameTitle = this.state.tasks.filter((task) => {
+      if(task.title.toLowerCase() === data.title.toLowerCase()){
+        return task
+      }
+    })
+    if(sameTitle.length > 0) {
+      return this.setState({
+        error: 'This task already exists'
+      })
+    }
+
     this.setState((prevState) => {
       return {
-        tasks: prevState.tasks.concat(data)
+        tasks: prevState.tasks.concat(data),
+        error: undefined
       }
     });
   }
@@ -106,6 +125,7 @@ class App extends React.Component {
           />
           <AddForm 
             onAddTask={this.onAddTask}
+            error={this.state.error}
           />
         </div>
       </div>
