@@ -41,7 +41,7 @@ class App extends React.Component {
     const i = tasks.findIndex(t => t.id === id);
     const task = { ...tasks[i], ...data };
     tasks[i] = task;
-    this.setState(prevState =>({ ...prevState, task }))
+    this.setState(prevState =>({ ...prevState, tasks }))
     localStorage.setItem('tasks', JSON.stringify(this.state.tasks))
   }
 
