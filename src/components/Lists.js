@@ -1,28 +1,24 @@
 import React from 'react';
 
 class Lists extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      completed: false
-    }
-    this.onChangeCompleted = this.onChangeCompleted.bind(this);
+
+  state = {
+    completed: false
   }
 
   componentDidMount() {
-    this.setState({
-      completed: this.props.task.completed
-    })
+    this.setState({ completed: this.props.task.completed })
   }
 
-  onChangeCompleted(e) {
-    this.setState({
-      completed: e.target.checked
-    })
-    this.props.onChangeCompleted(this.props.task.id, e.target.checked)
+  onChangeCompleted = e => {
+    const { onChangeCompleted, task } = this.props;
+    this.setState({ completed: e.target.checked });
+    const data = { completed: e.target.checked }
+    onChangeCompleted(task.id, data )
   }
 
   render() {
+    const { task, onDeleteTask } = this.props
     return (
       <label className="list-item">
         <div className="list-item__container">
@@ -30,10 +26,10 @@ class Lists extends React.Component {
             checked={this.state.completed}
             onChange={this.onChangeCompleted}
           />
-          <span>{this.props.task.title}</span>
+          <span>{task.title}</span>
         </div>
         <button className="button button--text"
-          onClick={() => this.props.onRemoveTask(this.props.task.id)}
+          onClick={() => onDeleteTask(task.id)}
         >remove</button>
       </label>
     )

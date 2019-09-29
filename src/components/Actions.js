@@ -1,27 +1,19 @@
 import React from 'react';
 
 class Actions extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      text: '',
-      hideCompleted: false
-    }
-    this.onChangeText = this.onChangeText.bind(this);
-    this.onChangeHideCompleted = this.onChangeHideCompleted.bind(this);
+
+  state = {
+    filterText: '',
+    hideCompleted: false
   }
 
-  onChangeText(e) {
-    this.setState({
-      text: e.target.value
-    })
+  onChangeText = e => {
+    this.setState({ filterText: e.target.value })
     this.props.onFilterText(e.target.value)
   }
 
-  onChangeHideCompleted(e) {
-    this.setState({
-      hideCompleted: e.target.checked
-    })
+  onChangeHideCompleted = e => {
+    this.setState({ hideCompleted: e.target.checked })
     this.props.onHideCompleted(e.target.checked)
   }
 
@@ -29,16 +21,16 @@ class Actions extends React.Component {
     return (
       <div className="actions">
         <div className="actions__container">
-          <input id="search-text" className="input" type="text" placeholder="Filter Task" 
-            value={this.state.text}
+          <input className="input" type="text" placeholder="Filter Task" 
+            value={this.state.filterText}
             onChange={this.onChangeText}
           />
-          <label className="checkbox">
-            <input type="checkbox" id="hide-completed" 
-              checked={this.state.hideCompleted}
-              onChange={this.onChangeHideCompleted}
-            /> Hide completed
-          </label>
+            <label className="checkbox">
+              <input type="checkbox" 
+                checked={this.state.hideCompleted}
+                onChange={this.onChangeHideCompleted}
+              /> Hide completed
+            </label>
         </div>
       </div>
     )

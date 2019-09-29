@@ -2,50 +2,36 @@ import React from 'react';
 import uuid from 'uuid';
 
 class AddForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: ''
-    }
-    this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onSubmitTask = this.onSubmitTask.bind(this);
+
+  state = {
+    title: '',
+    completed: false
   }
 
-  onChangeTitle(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+  onChangeTitle = ({ target }) => {
+    this.setState({ [target.name]: target.value })
   }
 
-  onSubmitTask(e) {
+  onSubmit = e => {
     e.preventDefault();
-    const data = {
-      title: this.state.title,
-      completed: false,
-      id: uuid()
-    }
-
-    this.props.onAddTask(data);
-    this.setState({
-      title: ''
-    })
+    const { title, completed } = this.state;
+    const { onAddTask } = this.props;
+    const data = { title, completed, id: uuid() };
+    onAddTask(data);
+    this.setState({ title: '' })
   }
 
-  render() {
-    console.log(this.props.error)
+  render () {
+    const { title } = this.state
     return (
-      <form id="new-task"
-        onSubmit={this.onSubmitTask}
+      <form
+        onSubmit={this.onSubmit}
       >
         <input type="text" className="input" placeholder="Something" name="title" 
-          autoComplete="off"
-          value={this.state.title}
+          value={title}
           onChange={this.onChangeTitle}
         />
-        <button className="button" type="submit">Add Task</button>
-        {
-          this.props.error ? <p style={{ color: 'red' }}>{this.props.error}</p> : null
-        }
+        <button className="button">Add Task</button>
       </form>
     )
   }
